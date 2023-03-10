@@ -95,11 +95,9 @@ fun Card(
                 .border(width = 0.5.dp, brush = borderBrush, shape = RoundedCornerShape(20.dp))
                 .graphicsLayer(rotationY = 180f)
                 .zIndex(if (needRenderBackSide) 1f else 0f),
-            onFieldClick = onFieldClick,
-            isFrozen = state.flagOne,
-            frozenAnimationFinished = frozenAnimationFinished,
         )
         FrontSide(
+            state = state.frontState,
             modifier = sideModifier
                 .graphicsLayer {
                     alpha = if (needRenderBackSide) 0f else 1f
@@ -112,9 +110,6 @@ fun Card(
                 )
                 .border(width = 0.5.dp, brush = borderBrush, shape = RoundedCornerShape(20.dp))
                 .zIndex(if (needRenderBackSide) 0f else 1f),
-            state = state.frontState,
-            isFrozen = state.flagOne,
-            frozenAnimationFinished = frozenAnimationFinished,
         )
     }
 }
@@ -123,8 +118,6 @@ fun Card(
 private fun FrontSide(
     state: State.FrontState,
     modifier: Modifier = Modifier,
-    isFrozen: Boolean,
-    frozenAnimationFinished: () -> Unit,
 ) {
     Box(
         modifier = modifier.clip(shape = RoundedCornerShape(20.dp)),
@@ -196,9 +189,6 @@ private fun Type(
 private fun BackSide(
     state: State.BackState?,
     modifier: Modifier = Modifier,
-    onFieldClick: () -> Unit,
-    isFrozen: Boolean,
-    frozenAnimationFinished: () -> Unit,
 ) {
     BoxWithConstraints(modifier = modifier) {
         Column(

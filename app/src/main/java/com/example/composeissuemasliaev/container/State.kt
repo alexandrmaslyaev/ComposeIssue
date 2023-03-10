@@ -36,7 +36,6 @@ data class State(
         @DrawableRes val iconResId: Int? = null,
     ) {
         Type1("String 1"),
-        Type2("String 2"),
     }
 }
 

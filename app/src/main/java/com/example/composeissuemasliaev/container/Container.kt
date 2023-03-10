@@ -62,7 +62,6 @@ internal fun Container(
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 private fun ExplanatoryTextContainer(modifier: Modifier) {
     val brush = getAnimatedBrush()
